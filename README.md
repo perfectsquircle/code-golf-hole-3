@@ -22,7 +22,10 @@ $ echo 9 8 7 6 5 4 3 2 1 | ruby my-solution.rb
 
 ## Rules
 
-The languages are limited to JavaScript (Node.js), Python3, and Ruby. You may not use libraries. Your submission is limited to a single file. That file cannot contain the `+` character.
+* The languages are limited to JavaScript (Node.js), Python3, and Ruby. 
+* You may not use libraries. 
+* Your submission is limited to a single file. 
+* That file cannot contain the `+` character.
 
 ## Scoring
 
@@ -41,4 +44,4 @@ Your score is 456
 ```
 
 
-![golf](https://media.giphy.com/media/Moo8SpSUk6R4A/giphy.gif)
+![golf](https://media.giphy.com/media/l2SqdN3BeFQzEG9Dq/giphy.gif)
