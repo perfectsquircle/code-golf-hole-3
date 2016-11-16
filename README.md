@@ -1,14 +1,11 @@
-Code Golf Round 1
+Code Golf: Round 1
 ===========================
 
-Getting Started
----------------
-
-### Introduction
+## Introduction
 
 Code Golf is a competition where given a programming prompt, the shortest source code (measured in bytes) to fully implement the prompt wins the challenge.
 
-### Challenge
+## Challenge
 
 Write a program that adds together several small positive integers. **Your program may not use the `+` character.**
 
@@ -23,11 +20,11 @@ $ echo 9 8 7 6 5 4 3 2 1 | ruby my-solution.rb
 45
 ``` 
 
-### Rules
+## Rules
 
 The languages are limited to JavaScript (Node.js), Python3, and Ruby. You may not use libraries. Your submission is limited to a single file. That file cannot contain the `+` character.
 
-### Scoring
+## Scoring
 
 Please submit a single file (.js, .py, or .rb). The included node script `code-golf.sh` will be used to score your file. To run this script, you must have Node.js installed.
 
