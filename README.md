@@ -18,18 +18,26 @@ $ echo 128 256 512 | python3 my-solution.py
 896
 $ echo 9 8 7 6 5 4 3 2 1 | ruby my-solution.rb
 45
-``` 
+```
 
 ## Rules
 
-* The languages are limited to JavaScript (Node.js), Python3, and Ruby. 
-* You may not use libraries. 
-* Your submission is limited to a single file. 
+* The languages are limited to JavaScript (Node.js), Python3, and Ruby.
+* You may not use libraries.
+* Your submission is limited to a single file.
 * That file cannot contain the `+` character.
 
 ## Scoring
 
 Please submit a single file (.js, .py, or .rb). The included node script `code-golf.sh` will be used to score your file. To run this script, you must have Node.js installed.
+
+Docker Host (any OS running docker - so you don't have to install node/ruby/python)
+```bash
+docker build -t golf .
+docker run -it -v "$PWD":/tmp/src golf bash
+$ ./code-golf.sh my-solution.js
+Your score is 456
+```
 
 macOS
 ```bash
