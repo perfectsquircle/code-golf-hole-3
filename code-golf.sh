@@ -59,6 +59,8 @@ function runTest(runtime, file, input, expectedOutput) {
         }, 1000)
         let node = spawn(runtime, [file])
         node.stdin.write(input)
+        node.stdin.end();
+
         node.stdout.setEncoding('utf8')
         node.stdout.on("data", (data) => {
             clearTimeout(timeout)
