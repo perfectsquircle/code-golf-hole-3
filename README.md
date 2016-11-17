@@ -33,8 +33,8 @@ Please submit a single file (.js, .py, or .rb). The included node script `code-g
 
 Docker Host (any OS running docker - so you don't have to install node/ruby/python)
 ```bash
-docker build -t golf .
-docker run -it -v "$PWD":/tmp/src golf bash
+$ docker build -t golf .
+$ docker run -it -v "$PWD":/tmp/src golf bash
 $ ./code-golf.sh my-solution.js
 Your score is 456
 ```
