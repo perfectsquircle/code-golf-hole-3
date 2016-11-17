@@ -5,6 +5,6 @@ From node
 
 RUN apt-get update
 RUN apt-get install -y ruby
-RUN apt-get install -y python
+RUN apt-get install -y python3
 COPY . /src/
 WORKDIR /src
