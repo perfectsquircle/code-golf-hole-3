@@ -12,7 +12,6 @@ if (!file) {
     process.exit(1)
 }
 
-checkFileContents(file)
 let runtime = getRuntime(file)
 
 test(runtime, file).then(() => { 
@@ -27,14 +26,15 @@ test(runtime, file).then(() => {
 
 function test(runtime, file) {
     return Promise.all([
-        runTest(runtime, file, "8 10", "18"),
-        runTest(runtime, file, "200 42 1024", "1266"),
-        runTest(runtime, file, "9 8 7 6 5 4 3 2 1", "45"),
-        runTest(runtime, file, "128 256 512", "896")
+        runTest(runtime, file, "Aaron, Gregg, Moos, and Laabs vacuum llamas in Mississippi."),
+        runTest(runtime, file, "aaabbbxxxyyy"),
+        runTest(runtime, file, "Everything   is    awesome!"),
+        runTest(runtime, file, "And, as in uffish thought he stood, The Jabberwock, with eyes of flame, Came whiffling through the tulgey wood, And burbled as it came!"),
+        runTest(runtime, file, "AaAaBbBbCcCcDdDd")
     ])
 }
 
-function runTest(runtime, file, input, expectedOutput) {
+function runTest(runtime, file, input) {
     return new Promise((resolve, reject) => {
         let errors = []
         let timeout = setTimeout(function () {
@@ -47,7 +47,7 @@ function runTest(runtime, file, input, expectedOutput) {
         node.stdout.setEncoding('utf8')
         node.stdout.on("data", (data) => {
             clearTimeout(timeout)
-            assert.equal(expectedOutput, data.trim())
+            makeAssertions(input, data)
             resolve("file passed tests")
         })
 
@@ -57,9 +57,28 @@ function runTest(runtime, file, input, expectedOutput) {
     })
 }
 
-function checkFileContents(file) {
-    let fileContents = fs.readFileSync(file, "utf-8")
-    assert(!fileContents.includes("+"), "file contains a + character")
+function makeAssertions(input, output) {
+    // The output string must be the same length as the input string.
+    assert.equal(input.length, output.length, "The output string is not the same length as the input string.")
+
+    // The output string must contain every character in the input string in the same quantity.
+    let inputSorted = input.split("").sort().join("")
+    let outputSorted = output.split("").sort().join("")
+    assert.equal(
+        inputSorted,
+        outputSorted,
+        `Output string contains characters not found in the input string.\n${inputSorted}\n${outputSorted}\n`
+    )
+
+    // No two letters or characters in the output string may be repeating.
+    // Upper and lower case letters are considered equal.    
+    for (let i = 0; i < output.length - 1; i++) {
+        let a = output[i]
+        let b = output[i+1]
+        if (a.toUpperCase() === b.toUpperCase()) {    
+            assert.fail(a, b, `Repeating characters found at index ${i} \n${output} \n${" ".repeat(i)}^^\n`)
+        }    
+    }
 }
 
 function getRuntime(file) {
