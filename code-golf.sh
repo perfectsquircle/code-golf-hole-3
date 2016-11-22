@@ -12,34 +12,16 @@ if (!file) {
     process.exit(1)
 }
 
-let stat = fs.statSync(file)
-
-let fileContents = fs.readFileSync(file, "utf-8")
-checkFileContents(fileContents)
-
-let extension = path.extname(file)
-
-let runtime
-switch (extension) {
-    case ".js":
-        runtime = "node"
-        break
-    case ".py":
-        runtime = "python3"
-        break
-    case ".rb":
-        runtime = "ruby"
-        break
-    default:
-        console.log("Unrecognized file type")
-        process.exit(1)
-}
+checkFileContents(file)
+let runtime = getRuntime(file)
 
 test(runtime, file).then(() => { 
+    let stat = fs.statSync(file)    
     console.log(`Your score is ${stat.size}`)
     process.exit(0)
 }).catch((e) => { 
     console.log("Failed tests")
+    console.log(e)
     process.exit(1)
 })
 
@@ -54,8 +36,9 @@ function test(runtime, file) {
 
 function runTest(runtime, file, input, expectedOutput) {
     return new Promise((resolve, reject) => {
+        let errors = []
         let timeout = setTimeout(function () {
-            reject("file failed tests")
+            reject("timeout\n" + errors.join("\n"))
         }, 1000)
         let node = spawn(runtime, [file])
         node.stdin.write(input)
@@ -67,9 +50,28 @@ function runTest(runtime, file, input, expectedOutput) {
             assert.equal(expectedOutput, data.trim())
             resolve("file passed tests")
         })
+
+        node.stderr.on("data", (data) => { 
+            errors.push(data)
+        })
     })
 }
 
-function checkFileContents(fileContents) {
+function checkFileContents(file) {
+    let fileContents = fs.readFileSync(file, "utf-8")
     assert(!fileContents.includes("+"), "file contains a + character")
+}
+
+function getRuntime(file) {
+    let extension = path.extname(file)    
+    switch (extension) {
+        case ".js":
+            return "node"
+        case ".py":
+            return "python3"
+        case ".rb":
+            return "ruby"
+        default:
+            throw new Error("Unrecognized file type")
+    }
 }
