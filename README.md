@@ -7,7 +7,7 @@ Code Golf is a competition where given a programming prompt, the shortest source
 
 ## Challenge
 
-Write a program that, given a short ASCII input string, outputs a copy where no two characters are repeating. Upper and lower case letters are considered equal. Your output does not have to match the following examples exactly, there are many correct answers.
+Write a program that, given a short ASCII input string, outputs a copy where no two consective characters are repeating. Upper and lower case letters are considered equal. Your output does not have to match the following examples exactly, there are many correct answers.
 
 ```bash
 $ echo 'Aaron, Gregg, Moos, and Laabs vacuum llamas in Mississippi.' | node my-solution.js
