@@ -1,9 +1,9 @@
-Code Golf: Round 2
+Code Golf: Hole 2
 ===========================
 
 ## Introduction
 
-Code Golf is a competition where given a programming prompt, the shortest source code (measured in bytes) to fully implement the prompt wins the challenge.
+Code Golf is a competition where given a programming prompt, the shortest source code (measured in bytes) to fully implement the prompt wins the challenge. Ties are broken by the first golfer to submit a solution of a given size.
 
 ## Challenge
 
