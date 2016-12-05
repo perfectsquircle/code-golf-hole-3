@@ -26,7 +26,7 @@ Everything i s a w e s ome!
 * The output string must be printed to stdout.
 * The output string must be the same length as the input string.
 * The output string must contain every character in the input string in the same quantity.
-* No two letters or characters in the output string may be repeating.
+* No two consecutive letters or characters in the output string may be repeating.
 * Upper and lower case letters are considered equal.
 
 ## Scoring
