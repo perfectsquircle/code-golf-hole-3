@@ -30,7 +30,8 @@ function test(runtime, file) {
         runTest(runtime, file, "aaabbbxxxyyy"),
         runTest(runtime, file, "Everything   is    awesome!"),
         runTest(runtime, file, "And, as in uffish thought he stood, The Jabberwock, with eyes of flame, Came whiffling through the tulgey wood, And burbled as it came!"),
-        runTest(runtime, file, "AaAaBbBbCcCcDdDd")
+        runTest(runtime, file, "AaAaBbBbCcCcDdDd"),
+        runTest(runtime, file, "aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbb")
     ])
 }
 
