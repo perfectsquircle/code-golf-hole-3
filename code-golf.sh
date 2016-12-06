@@ -59,8 +59,11 @@ function runTest(runtime, file, input) {
 }
 
 function makeAssertions(input, output) {
+    // Trim trailing newline
+    output = output.replace(/\r?\n?$/, "")
+
     // The output string must be the same length as the input string.
-    assert.equal(input.length, output.length, "The output string is not the same length as the input string.")
+    assert.equal(input.length, output.length, `The output string is not the same length as the input string.\nin : "${input}"\nout: "${output}"`)
 
     // The output string must contain every character in the input string in the same quantity.
     let inputSorted = input.split("").sort().join("")
@@ -68,7 +71,7 @@ function makeAssertions(input, output) {
     assert.equal(
         inputSorted,
         outputSorted,
-        `Output string contains characters not found in the input string.\n${inputSorted}\n${outputSorted}\n`
+        `Output string contains characters not found in the input string.\nin : ${inputSorted}\nout: ${outputSorted}\n`
     )
 
     // No two letters or characters in the output string may be repeating.
