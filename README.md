@@ -1,4 +1,4 @@
-Code Golf: Hole 2
+Code Golf: Hole 3
 ===========================
 
 ## Introduction
@@ -7,27 +7,36 @@ Code Golf is a competition where given a programming prompt, the shortest source
 
 ## Challenge
 
-Write a program that, given a short ASCII input string, outputs a permutation where no two consective characters are repeating. Upper and lower case letters are considered equal. Your output does not have to match the following examples exactly, there are many correct answers.
+Your friend Alice is writing a package manager. The package manager is almost complete, but she needs your help with dependency resolution. She wants you to write the algorithm that picks the correct version given a version range.
+
+She gives you all the versions of a published package through stdin, seperated by a single space. She also provides you with a version range as the first parameter. Your program must print the correct version.
 
 ```bash
-$ echo 'Aaron, Gregg, Moos, and Laabs vacuum llamas in Mississippi.' | node my-solution.js
-Araon, Greg,g Moso, and Labas vacumu lalmas in Misisispsip.
-$ echo 'aaabbbxxxyyy' | python3 my-solution.py
-yababxbxyxya
-$ echo 'Everything   is    awesome!' | ruby my-solution.rb
-Everything i s a w e s ome!
+$ echo '10.0.0 10.1.0 10.1.1 10.1.2 10.1.3 11.0.0' | node my-solution.js '10.*'
+10.1.3
+$ echo '0.1.0 0.1.1 0.1.2 1.0.0-rc1 0.1.3 0.1.4 1.0.0-rc2 1.0.0 1.0.1 1.1.0 1.2.0' | python3 my-solution.py '1.0.0-*'
+1.0.0
+$ echo '1.0.0-alpha.1 1.0.0-alpha 1.0.0-alpha.beta 1.0.0-beta.11 1.0.0-beta 1.0.0-beta.2' | ruby my-solution.rb '1.0.0-*'
+1.0.0-beta.11
 ```
 
 ## Rules
 
 * The languages are limited to JavaScript (Node.js 6.9), Python3 (3.5), and Ruby (2.3).
 * Your submission is limited to a single file.
-* The input string is provided through stdin.
-* The output string must be printed to stdout.
-* The output string must be the same length as the input string.
-* The output string must contain every character in the input string in the same quantity.
-* No two consecutive letters or characters in the output string may be repeating.
-* Upper and lower case letters are considered equal.
+* The series of versions are is provided through stdin, each seperated by a single space.
+* Versions provided aren't necessarily chronological or in order of precedence.
+* Each version conforms to [semver](http://semver.org)
+  * The versions will be of the form MAJOR.MINOR.PATCH or MAJOR.MINOR.PATCH-PRERELEASE.
+  * MAJOR, MINOR, and PATCH are always whole, positive numbers.
+  * PRERELEASE can contain alphanumeric characters. Precedence is determined by [semver rules](http://semver.org/#spec-item-11).
+* A single version range is given as the first argument.
+* The version range:
+  * Can be an exact version: `1.0.0`, `1.0.0-alpha1`
+  * Can use one `*` wildcard in any position: `1.0.0-*`, `1.0.*`, `1.*`, `*`
+    * A wildcard in the MAJOR, MINOR, or PATCH position indicate that the highest non-prerelease version within that position should be chosen.
+    * A wildcard in the PRERELEASE position indicates that the highest prerelease version should be chosen, unless a matching release version is found.
+* A single version must be printed to stdout, and it must be chosen from one of the input versions.
 
 ## Scoring
 
@@ -53,4 +62,4 @@ $ ./code-golf.sh my-solution.js
 Your score is 456
 ```
 
-![golf](https://media.giphy.com/media/t01OCfo66twSQ/giphy.gif)
+![golf](https://media.giphy.com/media/dOdfxZkkKFgOc/giphy.gif)
