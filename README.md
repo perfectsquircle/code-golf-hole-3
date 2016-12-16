@@ -12,17 +12,19 @@ Your friend Alice is writing a package manager. The package manager is almost co
 She gives you all the versions of a published package through stdin, seperated by a single space. She also provides you with a version range as the first parameter. Your program must print the correct version.
 
 ```bash
-$ echo '10.0.0 10.1.0 10.1.1 10.1.2 10.1.3 11.0.0' | node my-solution.js '10.*'
+$ echo '9.0.0 10.0.0 10.1.0 10.1.1 10.1.2 10.1.3 11.0.0' | node my-solution.js '10.*'
 10.1.3
 $ echo '0.1.0 0.1.1 0.1.2 1.0.0-rc1 0.1.3 0.1.4 1.0.0-rc2 1.0.0 1.0.1 1.1.0 1.2.0' | python3 my-solution.py '1.0.0-*'
 1.0.0
 $ echo '1.0.0-alpha.1 1.0.0-alpha 1.0.0-alpha.beta 1.0.0-beta.11 1.0.0-beta 1.0.0-beta.2' | ruby my-solution.rb '1.0.0-*'
 1.0.0-beta.11
+$ echo '1.0.0 2.0.0 3.0.0-alpha' | dotnet script my-solution.csx -- '*'
+2.0.0
 ```
 
 ## Rules
 
-* The languages are limited to JavaScript (Node.js 6.9), Python3 (3.5), and Ruby (2.3).
+* The languages are limited to JavaScript (Node.js 6.9), Python3 (3.5), Ruby (2.3), and C# ([.NET Core 1.1](https://github.com/filipw/dotnet-script)).
 * Your submission is limited to a single file.
 * The series of versions are is provided through stdin, each seperated by a single space.
 * Versions provided aren't necessarily chronological or in order of precedence.
