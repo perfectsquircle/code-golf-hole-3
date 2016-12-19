@@ -7,9 +7,9 @@ Code Golf is a competition where given a programming prompt, the shortest source
 
 ## Challenge
 
-Your friend Alice is writing a package manager. The package manager is almost complete, but she needs your help with dependency resolution. She wants you to write the algorithm that picks the correct version given a version range.
+Your friend Irene is writing a package manager. The package manager is almost complete, but she needs your help with dependency resolution. She wants you to write the algorithm that picks the correct version given a version range.
 
-She gives you all the versions of a published package through stdin, seperated by a single space. She also provides you with a version range as the first parameter. Your program must print the correct version.
+She gives you all the versions of a single published package through stdin, seperated by a single space. She also provides you with a version range as the first parameter. She wants your program to print the correct version that satisfies that range.
 
 ```bash
 $ echo '9.0.0 10.0.0 10.1.0 10.1.1 10.1.2 10.1.3 11.0.0' | node my-solution.js '10.*'
@@ -42,7 +42,7 @@ $ echo '1.0.0 2.0.0 3.0.0-alpha' | dotnet script my-solution.csx -- '*'
 
 ## Scoring
 
-Please submit a single file (.js, .py, or .rb). The included node script `code-golf.sh` will be used to score your file. To run this script, you must have Node.js installed.
+Please submit a single file (.js, .py, .rb, or .csx). The included node script `code-golf.sh` will be used to score your file. To run this script, you must have Node.js installed.
 
 macOS
 ```bash

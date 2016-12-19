@@ -56,7 +56,7 @@ function runTest(runtime, file, input, range, expectedOutput) {
         node.stdout.on("data", (data) => {
             try {
                 clearTimeout(timeout)
-                makeAssertions(expectedOutput, data)
+                makeAssertions(input, range, expectedOutput, data)
                 resolve("file passed tests")
             } catch (e) {
                 reject(e);
@@ -72,10 +72,15 @@ function runTest(runtime, file, input, range, expectedOutput) {
     })
 }
 
-function makeAssertions(expectedOutput, output) {
+function makeAssertions(input, range, expectedOutput, output) {
     // Trim trailing newline
     output = output.replace(/\r?\n?$/, "")
-    assert.equal(expectedOutput, output, `The incorrect version was selected.\nExpected: ${expectedOutput}\nActual:   ${output}`)
+    assert.equal(expectedOutput, output, `The incorrect version was selected.
+    Input:    ${input}
+    Range:    ${range}
+    Expected: ${expectedOutput}
+    Actual:   ${output}
+    `)
 }
 
 function getRuntime(file) {
