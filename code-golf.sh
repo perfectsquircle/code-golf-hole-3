@@ -35,7 +35,7 @@ function test(runtime, file) {
         .then(() => runTest(runtime, file, bigVersionString, "4.10.*", "4.10.8"))
         .then(() => runTest(runtime, file, bigVersionString, "0.*", "0.14.1"))
         .then(() => runTest(runtime, file, bigVersionString, "1.*", "1.0.8"))
-        .then(() => runTest(runtime, file, bigVersionString, "2.*", "2.5.9"))
+        .then(() => runTest(runtime, file, bigVersionString, "2.*", "2.5.11"))
         .then(() => runTest(runtime, file, bigVersionString, "3.*", "3.21.2"))
         .then(() => runTest(runtime, file, bigVersionString, "*", "4.14.0"))
 }
